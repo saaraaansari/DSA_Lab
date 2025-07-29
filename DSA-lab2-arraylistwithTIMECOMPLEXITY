@@ -1,0 +1,61 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class VehicleinfoArrayList {
+    public static void main(String[] args) {
+        ArrayList<String> names = new ArrayList<>();
+        ArrayList<Integer> wheels = new ArrayList<>();
+        ArrayList<Integer> enginecc = new ArrayList<>();
+       
+        names.add("Bike");
+        wheels.add(2);
+        enginecc.add(150);
+
+        names.add("Car");
+        wheels.add(4);
+        enginecc.add(1500);
+
+        names.add("Truck");
+        wheels.add(6);
+        enginecc.add(5000);
+
+        names.add("Scooter");
+        wheels.add(2);
+        enginecc.add(125);
+
+        names.add("Bus");
+        wheels.add(8);
+        enginecc.add(7000);
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Available vehicles:");
+        for (String name : names) {
+            System.out.println("- " + name);
+        }
+        System.out.print("Enter the name of the vehicle to get details: ");
+        String inputName = scanner.nextLine().trim();
+                long startTime = System.nanoTime();
+        boolean found = false;
+        for (int i = 0; i < names.size(); i++) {
+            if (names.get(i).equalsIgnoreCase(inputName)) {
+                System.out.println("Vehicle Details:");
+                System.out.println("Name: " + names.get(i));
+                System.out.println("Number of wheels: " + wheels.get(i));
+                System.out.println("Engine CC: " + enginecc.get(i));
+                found = true;
+                break;
+            }
+        }
+        long endTime = System.nanoTime();
+        long duration = endTime - startTime; 
+        if (!found) {
+            System.out.println("Vehicle not found.");
+        }
+        System.out.println("Time taken to search and display: " + duration + " nanoseconds");
+        scanner.close();
+    }
+}
+
+
+
