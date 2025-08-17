@@ -1,0 +1,48 @@
+public class Main {
+    public final int max = 4;
+    public int[] arr = new int[max];
+    public int f = -1;
+    public int r = -1;
+
+    public void enque(int data) {
+        if (r == max - 1) {
+            System.out.println("Overflow");
+            return;
+        }
+        if (f == -1) {
+            f = 0;
+        }
+        r++;
+        arr[r] = data;
+    }
+
+    public void deque() {
+        if (f == -1 || f > r) {
+            System.out.println("Underflow");
+            return;
+        }
+
+        if (f == r) {
+          System.out.println("Last Remaining Element: " + arr[f]);
+            f = -1;
+            r = -1;
+        } else {
+         f++;
+        }
+    }
+
+    public static void main(String[] args) {
+        Main q = new Main();
+        q.enque(10);
+        q.enque(20);
+        q.enque(30);
+        q.enque(40);
+        q.enque(50);
+
+        q.deque();
+        q.deque();
+        q.deque();
+        q.deque();
+        q.deque();
+    }
+}
