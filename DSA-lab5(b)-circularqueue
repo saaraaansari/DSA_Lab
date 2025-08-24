@@ -1,0 +1,75 @@
+public class CircularQueue {
+    int[] q;
+    int f,r,size,cap;
+
+    CircularQueue(int c){
+        cap=c;
+        q=new int[cap];
+        f=0;
+        r=-1;
+        size=0;
+    }
+
+    void enqueue(int x){
+        if(isFull()){
+            System.out.println("Queue is Full");
+            return;
+        }
+        r=(r+1)%cap;
+        q[r]=x;
+        size++;
+    }
+
+    int dequeue(){
+        if(isEmpty()){
+            System.out.println("Queue is Empty");
+            return -1;
+        }
+        int y=q[f];
+        f=(f+1)%cap;
+        size--;
+        return y;
+    }
+
+    int peek(){
+        if(isEmpty()){
+            System.out.println("Queue is Empty");
+            return -1;
+        }
+        return q[f];
+    }
+
+    boolean isEmpty(){
+        return size==0;
+    }
+
+    boolean isFull(){
+        return size==cap;
+    }
+
+    void display(){
+        if(isEmpty()){
+            System.out.println("Queue is Empty");
+            return;
+        }
+        for(int i=0;i<size;i++){
+            System.out.print(q[(f+i)%cap]+" ");
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args){
+        CircularQueue cq=new CircularQueue(5);
+        cq.enqueue(10);
+        cq.enqueue(20);
+        cq.enqueue(30);
+        cq.enqueue(40);
+        cq.enqueue(50);
+        cq.display();
+        System.out.println("Dequeued: "+cq.dequeue());
+        cq.display();
+        cq.enqueue(60);
+        cq.display();
+        System.out.println("Front: "+cq.peek());
+    }
+}
